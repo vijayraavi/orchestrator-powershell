@@ -27,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\Output\Debug\UiPath.PowerShell.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591;1573</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,8 +53,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmdlets\GetEnvironmentRobot.cs" />
+    <Compile Include="Cmdlets\GetMaintenance.cs" />
+    <Compile Include="Cmdlets\StartMaintenance.cs" />
+    <Compile Include="Cmdlets\StopMaintenance.cs" />
     <Compile Include="Cmdlets\UnlockUser.cs" />
     <Compile Include="Cmdlets\LockUser.cs" />
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Util\MaintenanceSettingConverter.cs" />
     <Compile Include="Util\UiPathTypeConverter.cs" />
     <Compile Include="Util\UserCmdlet.cs" />
     <Compile Include="Util\BindingResolver.cs" />
@@ -214,6 +224,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild" Condition="'$(Revision)' != '' ">
